@@ -4,7 +4,7 @@ spring:
   datasource:
     druid:
       # JDBC 配置(驱动类自动从url的mysql识别,数据源类型自动识别)
-      url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+      url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
       username: root
       password: affuli123
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -25,7 +25,7 @@ spring:
       time-between-eviction-runs-millis: 60000
       #配置一个连接在池中最小生存的时间，单位是毫秒
       min-evictable-idle-time-millis: 300000
-      filters: stat,wall
+      filters: stat
       # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
       #是否启用StatFilter默认值true
       web-stat-filter.enabled: true
@@ -38,8 +38,8 @@ spring:
       #是否启用StatViewServlet默认值true
       stat-view-servlet.enabled: true
       #根据配置中的url-pattern来访问内置监控页面，如果是上面的配置，内置监控页面的首页是/druid/index.html例如：
-      #http://110.76.43.235:9000/druid/index.html
-      #http://110.76.43.235:8080/mini-web/druid/index.html
+      #http://[工程ip]:[工程port]/druid/index.html
+      #http://[工程ip]:[工程port]/mini-web/druid/index.html
       stat-view-servlet.url-pattern:  /druid/*
       #允许清空统计数据
       stat-view-servlet.reset-enable:  true
