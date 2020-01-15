@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Date;
+import java.util.*;
 
 /**
  * <pre>
@@ -25,9 +25,6 @@ public class TestUserController {
 
     @Resource
     TestUserMapper testUserMapper;
-
-    @Resource
-    private  SqlSessionFactory sqlSessionFactory;
 
     @PostMapping("/getById")
     public TestUser getById(@RequestParam(name = "id") Integer id){
@@ -56,8 +53,8 @@ public class TestUserController {
                 "UPDATE `test`.`test_user` SET `id`='16', `uname`='aa', `pwd`='pwd', `test_filed`='1' WHERE (`id`='16');" +
                 " DELETE FROM test_user WHERE id = 2;" +
                 "UPDATE `test`.`user` SET `id`='4', `name`='Sandy', `age`='21', `email`='test4@baomidou.com', `create_user`=NULL, `create_time`='2019-07-12 15:06:34', `update_user`=111, `update_time`='2019-07-12 15:06:34' WHERE (`id`='4');";
-        SqlSession sqlSession = sqlSessionFactory.openSession(true);
-        ISqlMapper sqlMapper = sqlSession.getMapper(ISqlMapper.class);
-        sqlMapper.batchSql(sql);
+        testUserMapper.batchSql(sql);
     }
+
+
 }
